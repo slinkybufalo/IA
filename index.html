@@ -6,6 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
+        .logo-img {
+    width: 340px;
+    max-width: 95%;
+    display: block;
+    margin: 0 auto 20px;
+    filter: drop-shadow(0 4px 18px rgba(255,255,255,0.12));
+    transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.logo-img:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 6px 22px rgba(255,255,255,0.18));
+}
         * {
             box-sizing: border-box;
             margin: 0;
@@ -186,7 +199,7 @@
 
 <div class="card">
     <div class="card-header">
-       <img src="fischerlogo.webp" style="width:140px; margin: 0 auto 14px; display:block;">
+      <img src="fischerlogo.webp" class="logo-img">
         <h1>Detector IA</h1>
         <p class="subtitle">Model trained by Cristobal </p>
     </div>
@@ -229,7 +242,7 @@
     async function init() {
         try {
             startBtn.disabled = true;
-            statusEl.textContent = "Cargando modelo, espera...";
+            statusEl.textContent = "Loading model, please wait...";
 
             const modelURL = URL + "model.json";
             const metadataURL = URL + "metadata.json";
@@ -254,10 +267,10 @@
                 labelContainer.appendChild(document.createElement("div"));
             }
 
-            statusEl.textContent = "Modelo listo ✅ · Cámara activa.";
+            statusEl.textContent = "Model ready ✅ · Camera active.";
         } catch (err) {
             console.error(err);
-            statusEl.textContent = "Error al iniciar cámara o modelo. Revisa permisos y la carpeta my_model.";
+            statusEl.textContent = "Error starting camera or model. Check permissions and the my_model folder.";
             startBtn.disabled = false;
         }
     }
